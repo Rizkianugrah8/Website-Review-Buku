@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Buku Modern</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset dan General */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(45deg, #4e54c8, #8f94fb);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1rem;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .search-bar input {
+            padding: 10px 15px;
+            font-size: 1rem;
+            width: 80%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 10%;
+            padding: 10px;
+            background: #4e54c8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background: #8f94fb;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 2 / 3;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #4e54c8;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .rating {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            color: #f1c40f;
+        }
+
+        .rating span {
+            margin-left: 5px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background: #4e54c8;
+            color: white;
+            padding: 10px 0;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Review Buku Riutrive</h1>
+        <p>Temukan ulasan buku terbaik dan menarik untuk inspirasi membaca Anda dari unitrive!</p>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Cari buku...">
+        <button onclick="searchBooks()">Cari</button>
+    </div>
+
+    <!-- Container Buku -->
+    <div id="book-container" class="container">
+        <!-- Daftar Buku akan di-render di sini -->
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Review Buku Modern. Dibuat dengan semangat membaca.</p>
+    </footer>
+
+    <script>
+        // Daftar Buku
+        const books = [
+            { title: "Selamat Tinggal", author: "Tere Liye", img: "Selamat Tinggal.png", rating: "4.5" },
+            { title: "Laut Bercerita", author: "Leila S. Chudori", img: "Laut Bercerita jernih.png", rating: "5.0" },
+            { title: "Home Sweet Loan", author: "Christian Simamora", img: "Home_Sweet_Loan_cov.png", rating: "4.2" },
+            { title: "Azzamine", author: "Shopie Aulia", img: "Azzamine.png", rating: "4.5" }
+        ];
+
+        const container = document.getElementById("book-container");
+
+        // Fungsi render daftar buku
+        function renderBooks(bookList) {
+            container.innerHTML = ""; // Reset isi container
+            bookList.forEach(book => {
+                const card = `
+                  <div class="card">
+            <a href="halaman selanjutnya.html">
+                <img src="Selamat Tinggal.png" alt="Cover Buku Dunia Sophie"></a>
+                <div class="card-content">
+                <h2>Selamat Tinggal</h2>
+                <p><strong>Penulis:</strong> Tere Liye</p>
+                <p>Buku ini bercerita tentang Sintong Tinggal, mahasiswa yang lulus setelah 6 tahun dengan skripsi
+                    tentang Sutan Pane. Ia bekerja paruh waktu di toko buku bajakan dan menyadari dampaknya terhadap
+                    penulis. Pertemuannya dengan Jess dan Bunga, mahasiswa fakultas ekonomi, di toko buku bajakan
+                    membuka jalan bagi hubungan dan konflik yang menarik.</p>
+                <a href="halaman selanjutnya.html">
+                    <label for="tombol">Selengkapnya</label></a>
+                <div class="rating">
+                    ⭐⭐⭐⭐<span>(4.5/5)</span>
+                <div/>    
+                
+                
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        // Fungsi pencarian
+        function searchBooks() {
+            const input = document.getElementById("search-input").value.toLowerCase();
+            const filteredBooks = books.filter(book =>
+                book.title.toLowerCase().includes(input) || book.author.toLowerCase().includes(input)
+            );
+            renderBooks(filteredBooks); // Render ulang buku berdasarkan hasil pencarian
+        }
+
+        // Tampilkan semua buku saat pertama kali
+        renderBooks(books);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Buku Modern</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Reset dan General */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a2e;
+            color: #ddd;
+        }
+
+        /* Navbar */
+        nav {
+            background: #4e54c8;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav ul li a:hover {
+            color: #f1c40f;
+        }
+
+        nav .dark-mode-toggle {
+            cursor: pointer;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, #4e54c8, #8f94fb);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .search-bar input {
+            padding: 10px 15px;
+            font-size: 1rem;
+            width: 80%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 10%;
+            padding: 10px;
+            background: #4e54c8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background: #8f94fb;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h2 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #4e54c8;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .rating {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            color: #f1c40f;
+        }
+
+        .rating span {
+            margin-left: 5px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background: #4e54c8;
+            color: white;
+            padding: 15px 0;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">BukuKita</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#buku">Buku</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+        <div class="dark-mode-toggle">
+            <i class="fas fa-moon"></i>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header id="home">
+        <h1>Selamat Datang di BukuKita</h1>
+        <p>Temukan inspirasi dari berbagai review buku menarik!</p>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Cari buku...">
+        <button onclick="searchBooks()">Cari</button>
+    </div>
+
+    <!-- Container Buku -->
+    <div id="book-container" class="container">
+        <!-- Daftar Buku akan di-render di sini -->
+    </div>
+    
+    <script>
+        // Daftar Buku
+        const books = [
+            { title: "Selamat Tinggal", author: "Tere Liye", img: "Selamat Tinggal.png", rating: "4.5" },
+            { title: "Laut Bercerita", author: "Leila S. Chudori", img: "Laut Bercerita jernih.png", rating: "5.0" },
+            { title: "Home Sweet Loan", author: "Christian Simamora", img: "Home_Sweet_Loan_cov.png", rating: "4.2" },
+            { title: "Azzamine", author: "Shopie Aulia", img: "Azzamine.png", rating: "4.5" }
+        ];
+
+    
+        // Fungsi render daftar buku
+        function renderBooks(bookList) {
+            container.innerHTML = ""; // Reset isi container
+            bookList.forEach(book => {
+                const card = `
+                    <div class="card">
+                        <img src="${book.img}" alt="${book.title}">
+                        <div class="card-content">
+                            <h2>${book.title}</h2>
+                            <p><strong>Penulis:</strong> ${book.author}</p>
+                            <div class="rating">⭐ ${book.rating}</div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        // Fungsi pencarian
+        function searchBooks() {
+            const input = document.getElementById("search-input").value.toLowerCase();
+            const filteredBooks = books.filter(book =>
+                book.title.toLowerCase().includes(input) || book.author.toLowerCase().includes(input)
+            );
+            renderBooks(filteredBooks); // Render ulang buku berdasarkan hasil pencarian
+        }
+
+        // Tampilkan semua buku saat pertama kali
+        renderBooks(books);
+    </script>
+</body>
+
+</html>
+
+<script>
+    // Dark Mode Toggle
+    const toggle = document.querySelector('.dark-mode-toggle');
+    toggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        toggle.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+</script>
+</body>
+
+</html>
